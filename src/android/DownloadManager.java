@@ -32,7 +32,7 @@ public class DownloadManager extends CordovaPlugin {
     private void startDownload(String message, CallbackContext callbackContext) {
         if (message != null && message.length() > 0) {
             /**String filename = message.substring(message.lastIndexOf("/")+1, message.length());**/
-            String[] output = message.split("title=");
+            String[] output = message.split("&title=");
             String filename = output[1];
             try {
                 filename = URLDecoder.decode(filename,"UTF-8");
