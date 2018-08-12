@@ -41,7 +41,7 @@ public class DownloadManager extends CordovaPlugin {
                 callbackContext.error("Error in converting filename");
             }
             android.app.DownloadManager downloadManager = (android.app.DownloadManager) cordova.getActivity().getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);            
-            Uri Download_Uri = Uri.parse(message);
+            Uri Download_Uri = Uri.parse(output[0]);
             android.app.DownloadManager.Request request = new android.app.DownloadManager.Request(Download_Uri);
             //Restrict the types of networks over which this download may proceed.
             request.setAllowedNetworkTypes(android.app.DownloadManager.Request.NETWORK_WIFI | android.app.DownloadManager.Request.NETWORK_MOBILE);
@@ -56,7 +56,7 @@ public class DownloadManager extends CordovaPlugin {
             //Set visiblity after download is complete
             request.setNotificationVisibility(android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             long downloadReference = downloadManager.enqueue(request);
-            callbackContext.success(message);
+            callbackContext.success(output[0]);
         } else {
             callbackContext.error("Expected one non-empty string argument.");
         }
